@@ -27,14 +27,17 @@ calcStat();
 function vizArray() {
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+    let statChart = [["Element", "Density", { role: "style" }]];
+    for (var key in stat) {
+        let temp = [];
+        temp.push(key);
+        temp.push(stat[key]);
+        temp.push('green');
+        statChart.push(temp);
+    };
+    console.log(statChart);
     function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
-        ["Copper", 8.94, "#b87333"],
-        ["Silver", 10.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"]
-    ]);
+    var data = google.visualization.arrayToDataTable(statChart);
 
     var view = new google.visualization.DataView(data);
     view.setColumns([0, 1,
